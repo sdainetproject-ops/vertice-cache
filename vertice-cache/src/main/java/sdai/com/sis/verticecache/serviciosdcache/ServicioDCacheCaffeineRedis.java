@@ -8,6 +8,12 @@ import sdai.com.sis.vertice.cache.KeyCache;
 import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 
 /**
+ * Estrategia de servicio de caché híbrida de dos niveles (L1 Caffeine + L2 Redis).
+ * <p>
+ * Combina la velocidad de acceso en memoria local mediante Caffeine con la persistencia
+ * y distribución remota a través de Redis.
+ * </p>
+ * 
  * @since VERSIONDVERTICECACHEENCURSO
  * @author Sergio_MP
  */

@@ -8,6 +8,12 @@ import sdai.com.sis.vertice.cache.KeyCache;
 import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 
 /**
+ * Estrategia de servicio de caché distribuida basada en Redis.
+ * <p>
+ * Permite compartir el estado de la caché entre múltiples instancias o nodos del sistema
+ * utilizando un servidor Redis remoto.
+ * </p>
+ * 
  * @since VERSIONDVERTICECACHEENCURSO
  * @author Sergio_MP
  */
