@@ -8,6 +8,12 @@ import sdai.com.sis.vertice.cache.KeyCache;
 import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 
 /**
+ * Estrategia de servicio de caché híbrida de dos niveles (L1 Local en memoria + L2 Redis).
+ * <p>
+ * Emplea un almacén concurrente en memoria local para acceso inmediato de nivel 1
+ * sincronizado con una capa distribuida Redis de nivel 2.
+ * </p>
+ * 
  * @since VERSIONDVERTICECACHEENCURSO
  * @author Sergio_MP
  */

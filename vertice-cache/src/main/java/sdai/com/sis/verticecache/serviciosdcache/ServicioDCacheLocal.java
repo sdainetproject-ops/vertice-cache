@@ -11,8 +11,11 @@ import sdai.com.sis.verticecache.contenedoresdcache.AbstractContenedorDCache;
 import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 
 /**
- * Implementación de caché local en memoria para un contenedor.
- * Utiliza ConcurrentHashMap para acceso atómico y seguro entre hilos.
+ * Estrategia de servicio de caché local en memoria.
+ * <p>
+ * Implementa el almacenamiento en memoria directa apoyándose en el
+ * almacén concurrente proporcionado por {@link AbstractContenedorDCache}.
+ * </p>
  * 
  * @since VERSIONDVERTICECACHEENCURSO
  * @author Sergio_MP
@@ -21,6 +24,12 @@ import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 @ServiciosDCache(KCache.ServiciosDCache.CACHELOCAL)
 public class ServicioDCacheLocal extends AbstractServicioDCache {
 
+	/**
+	 * Obtiene el mapa de almacenamiento concurrente asociado al contenedor actual.
+	 * 
+	 * @return mapa concurrente en memoria del contenedor
+	 * @throws IllegalStateException si el contenedor asociado no es instancia de {@link AbstractContenedorDCache}
+	 */
 	private ConcurrentMap<String, Object> getMapaAlmacen() {
 		if (this.contenedorDCache instanceof AbstractContenedorDCache) {
 			return ((AbstractContenedorDCache) this.contenedorDCache).getAlmacenDInstancias();
@@ -34,13 +43,10 @@ public class ServicioDCacheLocal extends AbstractServicioDCache {
 		ConcurrentMap<String, Object> mapa = getMapaAlmacen();
 		String clave = keyCache.toKeyString();
 
-		// Comprobación rápida primero
 		Object valorExistente = mapa.get(clave);
 		if (valorExistente != null) {
 			return keyCache.getClase().cast(valorExistente);
 		}
-
-		// Si no existe y hay callback, calculamos y almacenamos de forma atómica
 		if (callback != null) {
 			Object valorCalculado = mapa.computeIfAbsent(clave, k -> callback.get());
 			if (valorCalculado != null) {

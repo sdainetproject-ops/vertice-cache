@@ -8,6 +8,12 @@ import sdai.com.sis.vertice.cache.KeyCache;
 import sdai.com.sis.verticecache.serviciosdcache.qualifiers.ServiciosDCache;
 
 /**
+ * Estrategia de servicio de caché basada en la librería Caffeine.
+ * <p>
+ * Proporciona un mecanismo de caché en memoria de alto rendimiento y políticas avanzadas
+ * de desalojo y expiración.
+ * </p>
+ * 
  * @since VERSIONDVERTICECACHEENCURSO
  * @author Sergio_MP
  */
